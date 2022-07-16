@@ -8,6 +8,7 @@ public class WylApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WylApplication.class, args);
+		System.out.println("Done........");
 	}
 
 }
