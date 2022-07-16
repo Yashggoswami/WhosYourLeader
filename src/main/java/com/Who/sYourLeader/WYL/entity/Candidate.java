@@ -29,14 +29,6 @@ public class Candidate {
     @Column(name="candidate_status", nullable = false)
     public String candidateStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "party_id")
-    private Party party;
-
-    @ManyToOne
-    @JoinColumn(name = "constituency_id")
-    private Constituency constituency;
-
 //    foreign key oneToMay party->parent table partyId
 //    foreign key ManyToMany constituency->parent table constituencyId
 

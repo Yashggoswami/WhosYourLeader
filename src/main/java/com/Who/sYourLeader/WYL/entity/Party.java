@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,6 +27,8 @@ public class Party {
     @Column(name="party_name",nullable = false)
     String partyName;
 
-    @OneToMany(mappedBy = "party")
-    private Set<Candidate> candidates = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="partyId",referencedColumnName = "partyId")
+    Set<Candidate> candidates = new HashSet<>();
+
 }
