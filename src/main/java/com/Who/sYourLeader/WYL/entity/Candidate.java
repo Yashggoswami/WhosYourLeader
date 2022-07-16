@@ -26,6 +26,9 @@ public class Candidate {
     @Column(name="candidate_name", nullable = false)
     public String candidateName;
 
+    @Column(name="candidate_image", nullable = false)
+    public String candidateImage;
+
     @Column(name="candidate_status", nullable = false)
     public String candidateStatus;
 

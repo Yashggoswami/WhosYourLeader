@@ -32,4 +32,8 @@ public class States {
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "states")
     Set<ElectionType> electionTypes = new HashSet<>();
+
+    // many to many
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "states")
+    Set<Election> elections = new HashSet<>();
 }

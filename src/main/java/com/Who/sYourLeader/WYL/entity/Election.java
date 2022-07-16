@@ -30,8 +30,10 @@ public class Election {
             inverseJoinColumns = { @JoinColumn (name = "electiontype_id")})
     Set<ElectionType> electionTypes = new HashSet<>();
 
-    // one to many
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="electionId",referencedColumnName = "electionId")
+    // many to many
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "election_states",
+            joinColumns = { @JoinColumn(name = "election_id")},
+            inverseJoinColumns = { @JoinColumn (name = "state_id")})
     Set<States> states = new HashSet<>();
 }

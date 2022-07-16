@@ -18,10 +18,10 @@ import java.util.Set;
 public class ElectionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long electionTypeId;
+    public long electiontypeId;
 
     @Column(name="electiontype_name",nullable = false)
-    String electionTypeName;
+    String electiontypeName;
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "electionTypes")
