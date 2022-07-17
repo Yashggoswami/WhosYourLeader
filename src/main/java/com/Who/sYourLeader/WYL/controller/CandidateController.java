@@ -1,22 +1,29 @@
 package com.Who.sYourLeader.WYL.controller;
 
+import com.Who.sYourLeader.WYL.dto.CandidateDto;
+import com.Who.sYourLeader.WYL.service.CandidateService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+
 @Controller
-public class CandidateController {
+public class CandidateController{
 
-//    public CandidateController(Candidate bookService) {
-//        this.bookService = bookService;
-//    }
-
-//    private BookService bookService;
-
-    @GetMapping("/candidate")
-    public String listBooks(Model model){
-//        model.addAttribute("books",bookService.getAllBooks());
-        return "index";
+    public CandidateController(CandidateService candidateService) {
+        this.candidateService = candidateService;
     }
+    private CandidateService candidateService;
+    @GetMapping("/candidates")
+    public String getCandidates(Model model){
+        model.addAttribute("candidates",candidateService.getAllCandidate());
+        return "home";
+    }
+
+//    @GetMapping("/allcandidates")
+//    public List<CandidateDto> getAllCandidates(){
+//        return candidateService.getAllCandidate();
+//    }
 }
 
 
