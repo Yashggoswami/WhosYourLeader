@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body >
+    <div class="m-4 text-center d-flex justify-content-center">
+    <div class="dropdown me-2">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Election
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+        <li><a class="dropdown-item active" href="#">Action</a></li>
+    </ul>
+    </div>
+    <div class="dropdown me-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Election Type
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item active" href="#">Action</a></li>
+        </ul>
+    </div>
+    <div class="dropdown me-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+            State
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton3">
+            <li><a class="dropdown-item active" href="#">Action</a></li>
+        </ul>
+    </div>
+    <div class="dropdown me-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+            Constituency
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton4">
+            <li><a class="dropdown-item active" href="#">Action</a></li>
+        </ul>
+    </div>
+        <button type="button" class="btn btn-dark col-1">Filter</button>
+    </div>
+    <div class="m-5">
+        <table class="table table-bordered table-responsive-sm">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Election Id</th>
+                <th scope="col">Election Name</th>
+                <th scope="col">ElectionTypes</th>
+                <th scope="col">States</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each = "election : ${elections}">
+              <td th:text = "${election.electionId}"></td>
+                <td th:text = "${election.electionName}"></td>
+                <td>
+                    <p th:each="electiontype : ${election.electionTypes}">
+                        <span th:text="${electiontype.electiontypeName}"></span>
+                    </p>
+                </td>
+                <td>
+                    <p th:each="state : ${election.states}">
+                        <span th:text="${state.stateName}"></span>
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <style>
+     img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+    </style>
+</body>
+
+</html>
