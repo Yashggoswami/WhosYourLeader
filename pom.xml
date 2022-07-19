@@ -57,21 +57,7 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-			<version>3.6.0</version>
-		</dependency>
 	</dependencies>
-	<!-- https://mvnrepository.com/artifact/wonder.ajax/Ajax -->
-	<dependency>
-		<groupId>wonder.ajax</groupId>
-		<artifactId>Ajax</artifactId>
-		<version>7.3</version>
-	</dependency>
-
-
 	<build>
 		<plugins>
 			<plugin>

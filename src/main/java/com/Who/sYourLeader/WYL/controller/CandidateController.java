@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
+
 @Controller
 public class CandidateController{
 
@@ -24,8 +25,7 @@ public class CandidateController{
         model.addAttribute("candidates",candidateService.getAllCandidate());
         return "home";
     }
-
-
 }
+
 
 
