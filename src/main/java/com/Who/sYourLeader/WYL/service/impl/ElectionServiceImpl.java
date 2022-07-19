@@ -30,5 +30,10 @@ public class ElectionServiceImpl implements ElectionService {
            String jpql = "Select e from Election e where electionId = " + id;
           TypedQuery<Election> query = entityManager.createQuery(jpql,Election.class);
           return query.getResultList();
+          
+    @Override
+    public List<Election> getAllElections() {
+        return electionRepository.findAll().stream().collect(Collectors.toList());
+    
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+
 @Controller
 public class CandidateController{
 
@@ -18,9 +19,12 @@ public class CandidateController{
         this.candidateService = candidateService;
         this.electionService = electionService;
     }
+
     private CandidateService candidateService;
+    private ElectionService electionService;
     @GetMapping("/candidates")
     public String getCandidates(Model model){
+        model.addAttribute("elections",electionService.getAllElections());
         model.addAttribute("candidates",candidateService.getAllCandidate());
         return "home";
     }
@@ -31,7 +35,7 @@ public class CandidateController{
         model.addAttribute("elections",electionService.getElectionType(id));
         return "home1";
     }
-
 }
+
 
 
