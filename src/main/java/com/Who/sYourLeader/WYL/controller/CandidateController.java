@@ -29,7 +29,6 @@ public class CandidateController{
         return "home";
     }
 
-    private ElectionService electionService;
     @GetMapping("/election/{id}")
      public String getElectionType(@PathVariable String id , Model model){
         model.addAttribute("elections",electionService.getElectionType(id));

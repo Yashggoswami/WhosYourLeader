@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -27,10 +28,11 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public List<Election> getElectionType(String id) {
-           String jpql = "Select e from Election e where electionId = " + id;
-          TypedQuery<Election> query = entityManager.createQuery(jpql,Election.class);
-          return query.getResultList();
-          
+        String jpql = "Select e from Election e where electionId = " + id;
+        TypedQuery<Election> query = entityManager.createQuery(jpql, Election.class);
+        return query.getResultList();
+    }
+
     @Override
     public List<Election> getAllElections() {
         return electionRepository.findAll().stream().collect(Collectors.toList());
