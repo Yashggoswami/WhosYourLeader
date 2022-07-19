@@ -6,6 +6,9 @@ import com.Who.sYourLeader.WYL.service.ElectionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 
@@ -24,6 +27,13 @@ public class CandidateController{
         model.addAttribute("elections",electionService.getAllElections());
         model.addAttribute("candidates",candidateService.getAllCandidate());
         return "home";
+    }
+
+    private ElectionService electionService;
+    @GetMapping("/election/{id}")
+     public String getElectionType(@PathVariable String id , Model model){
+        model.addAttribute("elections",electionService.getElectionType(id));
+        return "home1";
     }
 }
 
