@@ -8,5 +8,6 @@ public interface ElectionService {
 
     List<Election> getElectionType(String id);
 
+//    List<Election> getElectionbyId(Long id);
     List<Election> getAllElections();
 }
