@@ -36,6 +36,5 @@ public class ElectionServiceImpl implements ElectionService {
     @Override
     public List<Election> getAllElections() {
         return electionRepository.findAll().stream().collect(Collectors.toList());
-    
     }
 }
