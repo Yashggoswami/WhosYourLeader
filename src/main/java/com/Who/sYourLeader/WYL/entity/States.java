@@ -1,5 +1,6 @@
 package com.Who.sYourLeader.WYL.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,13 +28,16 @@ public class States {
     // one to many
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="stateId",referencedColumnName = "stateId")
+    @JsonIgnore
     Set<Constituency> constituencies = new HashSet<>();
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "states")
+    @JsonIgnore
     Set<ElectionType> electionTypes = new HashSet<>();
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "states")
+    @JsonIgnore
     Set<Election> elections = new HashSet<>();
 }
