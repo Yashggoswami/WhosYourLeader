@@ -22,10 +22,11 @@ public class Constituency {
     @Column(name="constituency_name",nullable = false)
     String constituencyName;
 
-    @ManyToOne(cascade = CascadeType.PERSIST,targetEntity = States.class)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
-    Long statesId;
-    //  one to many
+    @JoinColumn(name = "stateId",referencedColumnName = "stateId")
+    States state;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name="constituencyId",referencedColumnName = "constituencyId")
@@ -34,5 +35,5 @@ public class Constituency {
     //  many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "constituencies")
     @JsonIgnore
-    Set<ElectionType> electionTypes = new HashSet<>();
+    Set<ElectionType> electiontypes = new HashSet<>();
 }
