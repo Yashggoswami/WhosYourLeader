@@ -1,6 +1,7 @@
 package com.Who.sYourLeader.WYL.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.engine.internal.Cascade;
 
@@ -26,6 +27,7 @@ public class Party {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="partyId",referencedColumnName = "partyId")
+    @JsonIgnore
     public Set<Candidate> candidates = new HashSet<>();
 
 }

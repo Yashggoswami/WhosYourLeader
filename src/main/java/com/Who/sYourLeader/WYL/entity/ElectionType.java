@@ -1,5 +1,6 @@
 package com.Who.sYourLeader.WYL.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,12 @@ public class ElectionType {
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "electionTypes")
+    @JsonIgnore
     Set<Election> elections = new HashSet<>();
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(name = "electiontype_constituency",
             joinColumns = { @JoinColumn(name = "electiontype_id")},
             inverseJoinColumns = { @JoinColumn (name = "constituency_id")})
@@ -36,6 +39,7 @@ public class ElectionType {
 
     // many to many
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(name = "electiontype_states",
             joinColumns = { @JoinColumn(name = "electiontype_id")},
             inverseJoinColumns = { @JoinColumn (name = "state_id")})
