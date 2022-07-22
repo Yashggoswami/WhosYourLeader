@@ -5,10 +5,6 @@ import com.Who.sYourLeader.WYL.entity.Constituency;
 import com.Who.sYourLeader.WYL.entity.Election;
 import com.Who.sYourLeader.WYL.entity.ElectionType;
 import com.Who.sYourLeader.WYL.entity.States;
-import com.Who.sYourLeader.WYL.repository.ConstituencyRepository;
-import com.Who.sYourLeader.WYL.repository.ElectionRepository;
-import com.Who.sYourLeader.WYL.repository.ElectionTypeRepository;
-import com.Who.sYourLeader.WYL.repository.StatesRepository;
 import com.Who.sYourLeader.WYL.service.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 
 @RestController
@@ -50,7 +47,9 @@ public class CandidateController{
     @Autowired
     private CandidateService candidateService;
 
-    //    @GetMapping("/candidates")
+   
+   
+//    @GetMapping("/candidates")
 //    public String getCandidates(Model model){
 //        model.addAttribute("elections",electionService.getAllElections());
 //        model.addAttribute("candidates",candidateService.getAllCandidate());
@@ -65,15 +64,17 @@ public class CandidateController{
 
     @GetMapping("/elections")
     public List<Election> getAllElection(){
-        return electionService. getAllElections();
+        return electionService.getAllElections();
     }
+
 
 
     @GetMapping("/electionTypes")
     public List<ElectionType> getAllElectionType()
     {
         return electionTypeService.getAllElectionTypes();
-    }
+     }
+
 
 
     @GetMapping("/electiontype/{electionid}")
@@ -97,6 +98,8 @@ public class CandidateController{
     public List<CandidateDto> getCandidates(@PathVariable Long constituencyid){
         return candidateService.getCandidates(constituencyid);
     }
+
+    
 }
 
 
