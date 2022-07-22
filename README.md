@@ -15,7 +15,9 @@ Routes :
 5. Get all candidates by constituency_id(for the current election) : **/candidates/{constituency_id}**
 6. Get all candidates : **/candidates**
 
-Front-end repo : https://github.com/suryanjain14/WhosYourLeader_APP.git
+**Front-end repo** : https://github.com/suryanjain14/WhosYourLeader_APP.git
+
+**Web-scraping automation script repo** : https://github.com/vinaygoswami321/Web-scraping.git
 
 **Database Schema** :
 
