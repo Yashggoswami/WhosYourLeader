@@ -5,10 +5,7 @@ import com.Who.sYourLeader.WYL.entity.Constituency;
 import com.Who.sYourLeader.WYL.entity.Election;
 import com.Who.sYourLeader.WYL.entity.ElectionType;
 import com.Who.sYourLeader.WYL.entity.States;
-import com.Who.sYourLeader.WYL.repository.ConstituencyRepository;
-import com.Who.sYourLeader.WYL.repository.ElectionRepository;
-import com.Who.sYourLeader.WYL.repository.ElectionTypeRepository;
-import com.Who.sYourLeader.WYL.repository.StatesRepository;
+import com.Who.sYourLeader.WYL.repository.*;
 import com.Who.sYourLeader.WYL.service.CandidateService;
 import com.Who.sYourLeader.WYL.service.ElectionService;
 import lombok.AllArgsConstructor;
@@ -28,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -35,9 +33,10 @@ import java.util.Map;
 @NoArgsConstructor
 public class CandidateController{
 
-
+    @Autowired
     private CandidateService candidateService;
     private ElectionService electionService;
+
 //    @GetMapping("/candidates")
 //    public String getCandidates(Model model){
 //        model.addAttribute("elections",electionService.getAllElections());
@@ -60,7 +59,8 @@ public class CandidateController{
 
     @Autowired
     ConstituencyRepository constituencyRepository;
-
+    @Autowired
+    CandidateRepository candidateRepository;
     @GetMapping("/elections")
     public List<Election> getElectionType(){
         return electionRepository.findAll();
@@ -76,6 +76,10 @@ public class CandidateController{
     @GetMapping("/constituency/{electiontypeid}/{stateid}")
     public List<Constituency> getConstituency( @PathVariable("electiontypeid") Long electiontypeid, @PathVariable("stateid") Long stateid){
         return constituencyRepository.findConstituencysByElectiontypes_ElectiontypeIdAndState_StateId(electiontypeid,stateid);
+    }
+    @GetMapping("/candidates/{constituencyid}")
+    public List<CandidateDto> getCandidates(@PathVariable Long constituencyid){
+    return candidateService.getCandidates(constituencyid);
     }
 }
 
