@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="ISO-8859-1">
+    <title>Cascading Dropdown List with Ajax in Spring MVC Framework and Spring Data JPA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // var electionId='';
+            // var electionTypeId='';
+            // var StateId='';
+
+            $('#electionList').on('change', function(){
+                $.ajax({
+                    type: 'GET',
+                    url:'http://localhost:8000/elections',
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#electionTypeList').html(s);
+                    }
+                });
+            });
+
+
+            $('#electionTypeList').on('change', function(){
+                var electionId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8000/electiontype/' + electionId,
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#StatesList').html(s);
+                    }
+                });
+            });
+
+
+
+            $('#StatesList').on('change', function(){
+                var electionTypeId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8000/states/' + electionId +'/'+electionTypeId,
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#ConstituencyList').html(s);
+                    }
+                });
+            });
+
+            $('#ConstituencyList').on('change', function(){
+               var StateId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:8000/constituency/' + electionTypeId+'/'+StateId,
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#filter').html(s);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <table>
+        <tr>
+            <td>Election</td>
+            <td>
+        <!--        <td><select name="election">-->
+        <!--            <option th:each="election : ${elections}" th:text = "${election.electionName}"/>-->
+        <!--        </select>-->
+        <!--        </td>-->
+        <!--        </tr>-->
+                <select id="electionList"  name="election" style="width:200px">
+                    <option th:each="election : ${elections}" th:text = "${election.electionName}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>
+                <select id="electionTypeList" style="width:200px"></select>
+<!--                <select id="electionTypeList" name="electionType" style="width:200px">-->
+<!--                    <option th:each="electionType : ${electionsTypeList}" th:text = "${electionType.electionTypeName}"/>-->
+<!--                </select>-->
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <select id="StatesList" style="width:200px"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>Constituency</td>
+            <td>
+                <select id="ConstituencyList" style="width:200px"></select>
+            </td>
+        </tr>
+        <tr>
+        <td>filter</td>
+        <td>
+            <select id="filter" style="width:200px"></select>
+        </td>
+    </tr>
+    </table>
+</form>
+
+
+
+<!--<div class="m-4 text-center d-flex justify-content-center">-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Election-->
+<!--        </button>-->
+<!--        <ul  id="electionList" name="election" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">-->
+<!--&lt;!&ndash;            <a class="dropdown-item active" href="electionTypeList">Action</a>&ndash;&gt;-->
+<!--            <option  th:each="election : ${elections}" th:value="${election.electionId}" th:text = "${election.electionName}"/>-->
+<!--          </ul>-->
+<!--    </div>-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Election Type-->
+<!--        </button>-->
+<!--        <ul  id="electionTypeList" name="electionType" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">-->
+<!--            <option th:each="electionType : ${electionTypeList}" th:text = "${electionType.electionTypeName}"/>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            State-->
+<!--        </button>-->
+<!--        <ul  id="StatesList" name="state" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton3">-->
+<!--            <option th:each="state : ${StatesList}" th:text = "${state.stateName}"/>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Constituency-->
+<!--        </button>-->
+<!--        <ul  id="ConstituencyList" name="constituency" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton3">-->
+<!--            <option th:each="constituency : ${ConstituencyList}" th:text = "${constituency.constituencyName}"/>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <button type="button" if="filter" class="btn btn-dark col-1">Filter</button>-->
+<!--</div>-->
+
+<!--<div class="m-4 text-center d-flex justify-content-center">-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Election-->
+<!--        </button>-->
+
+<!--        <ul  name="election" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">-->
+<!--                            <option th:each="election : ${elections}" th:text = "${election.electionName}"/>-->
+<!--            &lt;!&ndash;            <li><a class="dropdown-item active" href=${election.electionId} value=${election.electionName}></a></li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div class="m-4 text-center d-flex justify-content-center">-->
+<!--    <div class="dropdown me-2">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Election-->
+<!--        </button>-->
+
+<!--        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">-->
+<!--            <li class="dropdown-item active"><select name="election">-->
+<!--                <option th:each="election : ${elections}" th:text = "${election.electionName}"/>-->
+<!--            </select>-->
+<!--            </li>-->
+<!--&lt;!&ndash;            <li><a class="dropdown-item active" href=${election.electionId} value=${election.electionName}></a></li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<form>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--        <td><select name="election">-->
+<!--            <option th:each="election : ${elections}" th:text = "${election.electionName}"/>-->
+<!--        </select>-->
+<!--        </td>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--            <td>Election</td>-->
+<!--            <td> <tr id="electionList" th:each = "election : ${elections}">-->
+<!--        <td th:text = "${election.electionId}"></td>-->
+<!--        <td th:text = "${election.electionName}"></td>-->
+<!--        <td>-->
+<!--                <select id="electionList" style="width:200px">-->
+<!--                    <th:forEach var="election" items="${elections }">-->
+<!--                        <option value="${election.electionId }">${election.electionName}</option>-->
+<!--                    </th:forEach>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+
+
+<!-------------------------------->
+<!--         <tr>-->
+<!--            <td>ElectionType</td>-->
+<!--            <td>-->
+<!--                <select id="ElectionTypeList" style="width:200px"></select>-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--            <td>state</td>-->
+<!--            <td>-->
+<!--                <select id="stateList" style="width:200px"></select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+</body>
+</html>

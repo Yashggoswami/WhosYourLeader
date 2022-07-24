@@ -2,34 +2,23 @@ package com.Who.sYourLeader.WYL.controller;
 
 import com.Who.sYourLeader.WYL.dto.CandidateDto;
 import com.Who.sYourLeader.WYL.entity.Constituency;
-import com.Who.sYourLeader.WYL.entity.Election;
 import com.Who.sYourLeader.WYL.entity.ElectionType;
 import com.Who.sYourLeader.WYL.entity.States;
 import com.Who.sYourLeader.WYL.service.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import org.hibernate.mapping.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 
 
 @RestController
 @AllArgsConstructor
 @NoArgsConstructor
-public class CandidateController{
+public class CandidateController {
 
 
     @Autowired
@@ -51,7 +40,7 @@ public class CandidateController{
    
 //    @GetMapping("/candidates")
 //    public String getCandidates(Model model){
-//        model.addAttribute("elections",electionService.getAllElections());
+////        model.addAttribute("elections",electionService.getAllElections());
 //        model.addAttribute("candidates",candidateService.getAllCandidate());
 //        return "home";
 //    }
@@ -62,10 +51,16 @@ public class CandidateController{
 //        return "home1";
 //    }
 
-    @GetMapping("/elections")
-    public List<Election> getAllElection(){
-        return electionService.getAllElections();
-    }
+//    @GetMapping("/elections")
+//    public String getAllElection(Model model){
+//        model.addAttribute("elections",electionService.getAllElections());
+//          return "view";
+//    }
+
+//    @GetMapping("/elections")
+//    public List<Election> getAllElection(){
+//            return electionService.getAllElections();
+//    }
 
 
 
