@@ -28,9 +28,11 @@ Routes :
 
 ![image](https://user-images.githubusercontent.com/68124405/180520783-ec0557fb-982d-4d7d-ba51-5a6d6f5f6399.png)
 
+
 **Swagger** : http://localhost:8000/swagger-ui.html
 
 ![swagger](https://user-images.githubusercontent.com/41690889/180760299-198820e4-1b13-482a-a40c-80fec666b1c4.png)
+
 
 **Actuator** : http://localhost:8000/actuator
 
