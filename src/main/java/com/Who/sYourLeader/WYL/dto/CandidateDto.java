@@ -9,4 +9,5 @@ public class CandidateDto {
     public String candidateImage;
     public String candidateStatus;
     public String partyName;
+    public String constituencyName;
 }

@@ -26,7 +26,9 @@ import java.util.Map;
 
 
 
-@RestController
+//@RestController
+@Controller
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class CandidateController{
@@ -49,55 +51,55 @@ public class CandidateController{
 
    
    
-//    @GetMapping("/candidates")
-//    public String getCandidates(Model model){
+    @GetMapping("/candidates")
+    public String getCandidates(Model model){
 //        model.addAttribute("elections",electionService.getAllElections());
 //        model.addAttribute("candidates",candidateService.getAllCandidate());
-//        return "home";
+        return "home";
+    }
+
+    @GetMapping("/election/{id}")
+     public String getElectionType(@PathVariable String id , Model model){
+        model.addAttribute("elections",electionService.getElectionType(id));
+        return "home1";
+    }
+
+//    @GetMapping("/elections")
+//    public List<Election> getAllElection(){
+//        return electionService.getAllElections();
 //    }
 //
-//    @GetMapping("/election/{id}")
-//     public String getElectionType(@PathVariable String id , Model model){
-//        model.addAttribute("elections",electionService.getElectionType(id));
-//        return "home1";
+//
+//
+//    @GetMapping("/electionTypes")
+//    public List<ElectionType> getAllElectionType()
+//    {
+//        return electionTypeService.getAllElectionTypes();
+//     }
+//
+//
+//
+//    @GetMapping("/electiontype/{electionid}")
+//    public List<ElectionType> getElectionTypesByElectionId(@PathVariable Long electionid){
+//        return electionTypeService.getElectionTypeByElectionId(electionid);
 //    }
-
-    @GetMapping("/elections")
-    public List<Election> getAllElection(){
-        return electionService.getAllElections();
-    }
-
-
-
-    @GetMapping("/electionTypes")
-    public List<ElectionType> getAllElectionType()
-    {
-        return electionTypeService.getAllElectionTypes();
-     }
-
-
-
-    @GetMapping("/electiontype/{electionid}")
-    public List<ElectionType> getElectionTypesByElectionId(@PathVariable Long electionid){
-        return electionTypeService.getElectionTypeByElectionId(electionid);
-    }
-
-    @GetMapping("/states/{electionid}/{electiontypeid}")
-    public List<States> getStateByElectionIdAndElectionTypeId(@PathVariable("electionid") Long electionid, @PathVariable("electiontypeid") Long electiontypeid){
-        return statesService.getStatesByElectionIdAndElectionTypeId(electionid,electiontypeid);
-    }
-
-
-    @GetMapping("/constituency/{electiontypeid}/{stateid}")
-    public List<Constituency> getConstituency( @PathVariable("electiontypeid") Long electiontypeid, @PathVariable("stateid") Long stateid){
-        return constituencyService.getConstituencyByElectionTypeIdAndStateId(electiontypeid, stateid);
-    }
-
-
-    @GetMapping("/candidates/{constituencyid}")
-    public List<CandidateDto> getCandidates(@PathVariable Long constituencyid){
-        return candidateService.getCandidates(constituencyid);
-    }
+//
+//    @GetMapping("/states/{electionid}/{electiontypeid}")
+//    public List<States> getStateByElectionIdAndElectionTypeId(@PathVariable("electionid") Long electionid, @PathVariable("electiontypeid") Long electiontypeid){
+//        return statesService.getStatesByElectionIdAndElectionTypeId(electionid,electiontypeid);
+//    }
+//
+//
+//    @GetMapping("/constituency/{electiontypeid}/{stateid}")
+//    public List<Constituency> getConstituency( @PathVariable("electiontypeid") Long electiontypeid, @PathVariable("stateid") Long stateid){
+//        return constituencyService.getConstituencyByElectionTypeIdAndStateId(electiontypeid, stateid);
+//    }
+//
+//
+//    @GetMapping("/candidates/{constituencyid}")
+//    public List<CandidateDto> getCandidates(@PathVariable Long constituencyid){
+//        return candidateService.getCandidates(constituencyid);
+//    }
 
     
 }
