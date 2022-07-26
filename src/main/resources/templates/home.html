@@ -7,47 +7,34 @@
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src = "@{/js/main.js}"></script>
 </head>
 <body >
-    <div class="m-4 text-center d-flex justify-content-center">
-    <div class="dropdown me-2">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Election
-    </button>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" th:each="election: ${elections}">
-        <li><a class="dropdown-item active" href="#"><button id="listVal" type="submit" th:text = "${election.electionName}"></button></a></li>
-    </ul>
+
+    <div class="m-5 text-center d-flex justify-content-center">
+        <select id="election" class="form-select-sm m-1 " aria-label="Default select example">
+            <option selected="">Select Election</option>
+
+        </select>
+        <select id="election-type" class="form-select-sm m-1" aria-label="Default select example">
+            <option selected="">Select Election-Type</option>
+
+        </select>
+        <select id="state" class="form-select-sm m-1" aria-label="Default select example">
+            <option selected="">Select State</option>
+
+        </select>
+        <select id="constituency" class="form-select-sm m-1" aria-label="Default select example">
+            <option selected="">Select Constituency</option>
+
+        </select>
+        <button id="filter" type="button" class="btn btn-dark col-1">Filter</button>
     </div>
-    <div class="dropdown me-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-            Election Type
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            <li><a class="dropdown-item active" href="#">Action</a></li>
-        </ul>
-    </div>
-    <div class="dropdown me-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-            State
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton3">
-            <li><a class="dropdown-item active" href="#">Action</a></li>
-        </ul>
-    </div>
-    <div class="dropdown me-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
-            Constituency
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton4">
-            <li><a class="dropdown-item active" href="#">Action</a></li>
-        </ul>
-    </div>
-        <button type="button" class="btn btn-dark col-1">Filter</button>
-    </div>
+
     <div class="m-5">
-        <table class="table table-bordered table-responsive-sm">
+        <table  class="table table-bordered table-responsive-sm">
             <thead class="table-dark">
             <tr>
                 <th scope="col">Candidate Name</th>
@@ -57,25 +44,10 @@
                 <th scope="col">Constituency</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-            <tr th:each="candidate: ${candidates}">
-                <td th:text = "${candidate.candidateName}"></td>
-                <td><img th:src = "${candidate.candidateImage}" alt="Girl in a jacket" width="100" height="100"></td>
-                <td th:text = "${candidate.candidateStatus}"></td>
-                <td th:text = "${candidate.partyName}"></td>
-                <td th:text = "${candidate.constituencyName}"></td>
-            </tr>
-            </tr>
+            <tbody id="candidate-table-body">
             </tbody>
         </table>
     </div>
-    <style>
-     img{
-    display: block;
-    max-width: 100%;
-    height: auto;
-    }
-    </style>
+
 </body>
 </html>
