@@ -5,7 +5,7 @@ $(document).ready(function(){
     var constituency_id;
 
    $.ajax({
-       url:"/elections",
+       url:git /elections",
        success:function(data){
        data.forEach(element => $("#election").append(`<option id= ${element.electionId} >${element.electionName}</option>`));
        }
