@@ -32,11 +32,6 @@ public class CandidateServiceImpl implements CandidateService {
         return candidateRepository.findAll().stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
     @Override
-    public List<CandidateDto> getCandidates(Long id){
-        return candidateRepository.getCandidatesByConstituency_ConstituencyId(id).stream().map(this::convertEntityToDto).collect(Collectors.toList());
-    }
-
-    @Override
     public CandidateDto convertEntityToDto(Candidate candidate){
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         CandidateDto candidateDto = new CandidateDto();

@@ -10,7 +10,7 @@ public interface CandidateService {
 
 
      List<CandidateDto> getAllCandidate();
-     List<CandidateDto> getCandidates(Long id);
+
      CandidateDto convertEntityToDto(Candidate candidate);
 
 }
