@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: API-GATEWAY
+  #API Gateway routing configuration
+  cloud:
+    gateway:
+      routes:
+    # wyl routes
+        - id: WYL-SERVICE
+          uri: lb://WYL-SERVICE:9001
+          predicates:
+            - Path=/wyl/** , /static/**
+#          filters:
+#            - StripPrefix=1
+ribbon:
+  eureka:
+    enabled: false
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
