@@ -1,7 +1,12 @@
 server:
-  port: 8080
+  port: 8761
 
 spring:
   application:
-    name: service-registery
+    name: SERVICE-REGISTRY
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
 
