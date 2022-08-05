@@ -19,10 +19,8 @@ import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +31,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @NoArgsConstructor
+@RequestMapping("/wyl")
 public class CandidateController{
 
 
