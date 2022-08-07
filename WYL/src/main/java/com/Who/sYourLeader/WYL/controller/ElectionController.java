@@ -20,8 +20,8 @@ public class ElectionController {
     private ElectionService electionService;
     @GetMapping("/candidates")
     public String getCandidates(Model model){
-        model.addAttribute("elections",electionService.getAllElections());
-        model.addAttribute("candidates",candidateService.getAllCandidate());
+//        model.addAttribute("elections",electionService.getAllElections());
+//        model.addAttribute("candidates",candidateService.getAllCandidate());
         return "home";
     }
 
