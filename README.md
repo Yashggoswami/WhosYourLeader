@@ -8,12 +8,12 @@ https://github.com/Yashggoswami/Web-scraping/blob/feat/database/Database/DataBas
 database client - https://tableplus.com/windows
 
 Routes :
-1. Get all elections : **/elections**
-2. Get all electiontypes using election-id : **/electiontype/{election_id}**
-3. Get all states by election-id and electiontype-id : **/states/{election_id}/{electiontype_id}**
-4. Get all constituencies by electiontype-id and state_id : **/constituency/{electiontype_id}/{state_id}**
-5. Get all candidates by constituency_id(for the current election) : **/candidates/{constituency_id}**
-6. Get all candidates : **/candidates**
+1. Get all elections : **/wyl/elections**
+2. Get all electiontypes using election-id : **/wyl/electiontype/{election_id}**
+3. Get all states by election-id and electiontype-id : **/wyl/states/{election_id}/{electiontype_id}**
+4. Get all constituencies by electiontype-id and state_id : **/wyl/constituency/{electiontype_id}/{state_id}**
+5. Get all candidates by constituency_id(for the current election) : **/wyl/candidates/{constituency_id}**
+6. Get all candidates : **/static/candidates**
 
 **Front-end repo** : https://github.com/suryanjain14/WhosYourLeader_APP.git
 
