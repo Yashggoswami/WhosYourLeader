@@ -1,6 +1,6 @@
 # WhosYourLeader
 
-A platform where you can find about details about people contesting election in your constituency
+A platform where you can find the details about people contesting election in your constituency in current election.
 
 database creation -->
 https://github.com/Yashggoswami/Web-scraping/blob/feat/database/Database/DataBaseCreation.sql
